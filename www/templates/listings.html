@@ -1,0 +1,63 @@
+<ion-view view-title="My listings">
+    <ion-nav-buttons side="right">
+        <button class="button icon ion-plus-round" ng-click="createListing()"><!-- New listing --></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <!-- <div class="item">My listings</div> -->
+        <!-- <div class="padding">
+            <button class="button button-assertive" ng-click="clearListings()">Clear listings</button>
+        </div> -->
+        <div class="spinner" ng-if="loading">
+            <ion-spinner icon="android"></ion-spinner>
+        </div>
+        <div class="list" ng-show="!loading">
+            <div class="card" ng-show="!userListings.length">
+                <div class="item item-divider">Get started!</div>
+                <div class="item item-text-wrap">You currently have no active listings, click below to get started!</div>
+                <div class="item item-divider"><button class="button button-block button-balanced" ng-click="createListing()">Create listing</button></div>
+            </div>
+            <div ng-show="userListings.length">
+                <div class="card">
+                    <div class="item item-divider aquamarine-heading">Your most recent listings</div>
+                </div>
+                <div class="card book-card" ng-repeat="listing in userListings | reverse : true">
+                    <div class="item item-divider book-heading"><span class="price">{{ "£" + listing.price }}</span>{{ listing.title }}</div>
+                    <div class="item item-thumbnail-left">
+                        <img ng-src="{{ listing.thumbnail || 'img/blue-album.jpg' }}">
+                        <h4>{{ listing.author.join(", ") }}</h4>
+                        <h4>{{ listing.publisher }}</h4>
+                        <h4>ISBN: {{ listing.isbn }}</h4>
+                        <h4>{{ listing.subject.join(", ") }}</h4>
+                        <p class="snippet">{{ listing.listingDescription }}</p>
+                        <p>{{ listing.location }}</p>
+                        <span class="book-card-footer">{{ listing.username }} • {{ listing.timestamp | date : 'mediumDate' }}</span>
+                    </div>
+                    <div class="item item-divider button-bar">
+                        <button class="button button-small button-royal icon-left ion-edit" ng-click="editListing(listing)">Edit</button>
+                        <button class="button button-small button-assertive icon-left ion-trash-a" ng-click="removeListing(listing)">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="card book-card" ng-repeat="listing in userListings">
+                <div class="item item-thumbnail-left" href="#">
+                    <img ng-src="{{ listing.thumbnail || 'img/blue-album.jpg' }}">
+                    <h2>{{ listing.title }}</h2>
+                    <h4>{{ listing.subject }}</h4>
+                    <h4>{{ listing.isbn }}</h4>
+                    <p class="snippet">{{ listing.bookDescription }}</p>
+                    <p class="snippet">{{ listing.listingDescription }}</p>
+                    <p>{{ listing.timestamp | date : 'medium' }}</p>
+                    <p>{{ listing.username }}</p>
+                </div>
+                <div class="item button-bar">
+                    <button class="button button-small button-royal icon-left ion-edit" ng-click="editListing(listing)">Edit</button>
+                    <button class="button button-small button-assertive icon-left ion-trash-a" ng-click="removeListing(listing)">Remove</button>
+                </div>
+            </div> -->
+        </div>
+        <!-- <div ng-repeat="listing in userListings">
+            <pre>{{ listing | json }}</pre>
+            <button class="button button-royal icon-right ion-plus-round" ng-click="editListing(listing)">Edit listing</button>
+        </div> -->
+    </ion-content>
+</ion-view>

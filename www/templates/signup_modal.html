@@ -1,0 +1,40 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-energized">
+        <h1 class="title">Signup</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeSignup()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form name="signupForm" ng-submit="signupForm.$valid && signup()" novalidate>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" name="username" ng-model="signupData.username" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email address</span>
+                    <input type="email" name="email" ng-model="signupData.email" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" name="password" ng-model="signupData.password" required>
+                </label>
+                <span class="item">
+                    <button class="button button-block button-balanced" type="submit">Register</button>
+                </span>
+            </div>
+        </form>
+        <div class="spinner" ng-if="loading">
+            <ion-spinner icon="android"></ion-spinner>
+        </div>
+        <div class="padding" ng-show="signupFailed">
+            <p ng-show="signupForm.username.$error.required">* Username is required</p>
+            <p ng-show="signupForm.email.$error.required">* Email address is required</p>
+            <p ng-show="signupForm.email.$invalid">* Invalid email address format</p>
+            <!-- <p ng-show="signupForm.username.$error.minlength">* Username must be longer than 5 characters</p> -->
+            <p ng-show="signupForm.password.$error.required">* Password is required</p>
+            <!-- <p ng-show="signupForm.password.$error.minlength">* Password must be longer than 6 characters</p> -->
+        </div>
+    </ion-content>
+</ion-modal-view>

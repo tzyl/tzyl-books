@@ -1,0 +1,6 @@
+<span class="input-label">{{ heading }}</span>
+<button type="button" ng-click="addItem()" class="top-right-button button button-small button-clear button-balanced icon-right ion-plus-round">add another {{ itemName }}</button>
+<div ng-repeat="item in data track by $index" class="item-input-wrapper input-with-button">
+    <input type="text" name="{{ itemName }}$index" placeholder="{{ placeholder }}" ng-model="data[$index]" required>
+    <button type="button" ng-if="$index > 0" ng-click="removeItem($index)" class="button button-small button-icon ion-close-round"></button>
+</div>

@@ -1,0 +1,33 @@
+<ion-view view-title="View listing">
+    <ion-content>
+        <div class="list">
+            <div class="card book-card">
+                <div class="item item-divider book-heading"><span class="price">{{ "£" + listing.price }}</span>{{ listing.title }}</div>
+                <div class="item item-thumbnail-left">
+                    <img ng-src="{{ listing.thumbnail || 'img/blue-album.jpg' }}">
+                    <h4>{{ listing.author.join(", ") }}</h4>
+                    <h4>{{ listing.publisher }}</h4>
+                    <h4>ISBN: {{ listing.isbn }}</h4>
+                    <h4>{{ listing.subject.join(", ") }}</h4>
+                    <p>{{ listing.location }}</p>
+                    <span class="book-card-footer">{{ listing.username }} • {{ listing.timestamp | date : 'mediumDate' }}</span>
+                </div>
+                <div class="item item-body" expandable-text-item heading="Book description" text="{{ listing.bookDescription }}"></div>
+                <div class="item item-body" expandable-text-item heading="Listing description" text="{{ listing.listingDescription }}"></div>
+            </div>
+            <!-- <div class="card book-card">
+                <div class="item item-thumbnail-left">
+                    <img ng-src="{{ listing.thumbnail || 'img/blue-album.jpg' }}">
+                    <h2>{{ listing.title }}</h2>
+                    <h4>{{ listing.author.join(", ") }}</h4>
+                    <h4>{{ listing.publisher }}</h4>
+                    <p>{{ listing.subject.join(", ") }}</p>
+                    <p>{{ listing.isbn }}</p>
+                    <p>{{ listing.pageCount }} pages</p>
+                </div>
+                <div class="item item-body" expandable-text-item heading="Book description" text="{{ listing.bookDescription }}"></div>
+                <div class="item item-body" expandable-text-item heading="Listing description" text="{{ listing.listingDescription }}"></div>
+            </div> -->
+        </div>
+    </ion-content>
+</ion-view>

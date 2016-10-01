@@ -1,0 +1,140 @@
+/* Loading spinner */
+.spinner {
+    /*margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;*/
+    margin-top: 20px;
+    text-align: center;
+}
+
+.spinner svg {
+    width: 50px;
+    height: 50px;
+}
+
+.aquamarine-heading {
+    background-color: aquamarine;
+}
+
+.search-box-icon {
+    padding-top: 2px;
+}
+
+/* Card to display a book. */
+a.book-link {
+    text-decoration: none;
+}
+
+.book-card .price {
+    float: right;
+    position: relative;
+    top: -3px;
+    right: -10px;
+    font-size: 16px;
+    border: solid 4px purple;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    background: purple;
+    color: white;
+    line-height: 18px;
+}
+
+.book-card .book-card-footer {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 14px;
+}
+
+.book-card .item-thumbnail-left {
+    min-height: 145px;
+}
+
+.book-card .item-thumbnail-left > img:first-child {
+    height: initial;
+    max-height: initial;
+}
+
+.book-card .item-body > h2:first-child {
+    margin-top: 0;
+}
+
+.book-card .item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.book-card .snippet {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Expandable text item directive */
+.expandable-button {
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
+.expandable-ellipsis {
+    color: #aaa;
+}
+
+/* Create listing modal */
+.swiper-slide {
+    overflow-y: scroll;
+}
+
+.icon-left.button-small {
+    line-height: 31px;
+}
+
+.button-stable.button-stable-border {
+    border-color: #b2b2b2;
+}
+
+.icon-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-input-container .icon {
+    padding: 0;
+}
+
+.item-input-large-font {
+    font-size: 24px;
+}
+
+.item-input-large-font input {
+    font-size: 24px;
+}
+
+.top-right-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.item-input-wrapper.input-with-button {
+    padding-left: 0;
+    background: none;
+}
+
+/* About page */
+.about-container {
+    padding-top: 20%;
+}
+
+.about-icon {
+    font-size: 10em;
+}
+
+.about-text {
+    font-size: 24px;
+}

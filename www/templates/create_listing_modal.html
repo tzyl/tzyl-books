@@ -1,0 +1,142 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-energized">
+        <div class="buttons" ng-show="(mode == 'create' && slider.activeIndex > 0) || (mode == 'edit' && slider.activeIndex == 3)">
+            <button class="button button-clear" ng-click="slider.slidePrev()">Back</button>
+        </div>
+        <h1 class="title title-center" ng-if="mode == 'create'">New listing</h1>
+        <h1 class="title title-center" ng-if="mode == 'edit'">Edit listing</h1>
+        <div class="buttons">
+            <button class="button icon ion-close-round" ng-click="closeCreate()"><!-- Cancel --></button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-slides options="sliderOptions" slider="slider">
+            <ion-slide-page>
+                <form name="isbnForm" ng-submit="searchIsbn(listing.isbn)">
+                    <div class="list">
+                        <div class="card">
+                            <div class="item item-divider">Let's get started!</div>
+                            <label class="item item-input-large-font">
+                                <p>Enter the ISBN of your book below</p>
+                                <p>(ISBN-10/ISBN-13, no hyphens)</p>
+                                <span class="input-label">ISBN:</span>
+                                <input type="tel" pattern="[0-9]*X?" name="isbn" ng-model="listing.isbn" required autofocus>
+                            </label>
+                            <div class="item">
+                                <button class="button button-block button-balanced" type="submit" ng-disabled="isbnForm.$invalid">Search ISBN</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </ion-slide-page>
+            <ion-slide-page>
+                <div class="list">
+                    <div class="card book-card">
+                        <div class="item item-divider">Is this correct?</div>
+                        <div class="item item-thumbnail-left">
+                            <img ng-src="{{ listing.thumbnail }}">
+                            <h2>{{ listing.title }}</h2>
+                            <h4>{{ listing.author.join(", ") }}</h4>
+                            <h4>{{ listing.publisher }}</h4>
+                            <h4>{{ listing.subject.join(", ") }}</h4>
+                            <h4>ISBN: {{ listing.isbn }}</h4>
+                            <p>{{ listing.pageCount }} pages</p>
+                        </div>
+                        <div class="item item-body" expandable-text-item heading="Book description" text="{{ listing.bookDescription }}"></div>
+                        <div class="item button-bar">
+                            <button class="button button-balanced" ng-click="slider.slideNext()">Yes</button>
+                            <button class="button button-assertive" ng-click="slider.slidePrev()">No</button>
+                        </div>
+                    </div>
+                </div>
+            </ion-slide-page>
+            <ion-slide-page>
+                <form name="listingForm" ng-submit="slider.slideNext()">
+                    <div class="list">
+                        <div class="card">
+                            <div class="item item-divider">What price are you looking for?</div>
+                            <label class="item item-input item-input-large-font">
+                                <i class="icon placeholder-icon">£</i>
+                                <input type="number" step="0.01" min="0" name="price" ng-model="listing.price" required>
+                            </label>
+                        </div>
+                        <div class="card">
+                            <div class="item item-divider">Where is the book located?</div>
+                            <label class="item item-input">
+                                <input type="text" name="location" placeholder="Balliol College" ng-model="listing.location" required>
+                            </label>
+                        </div>
+                        <div class="card">
+                            <div class="item item-divider">Give a description for your listing</div>
+                            <label class="item item-input">
+                                <textarea rows="8" name="listing-description" placeholder="e.g. condition, contact details" ng-model="listing.listingDescription" required></textarea>
+                            </label>
+                        </div>
+                        <div class="item">
+                            <button class="button button-block button-balanced" type="submit" ng-disabled="listingForm.$invalid">Continue</button>
+                        </div>
+                    </div>
+                </form>
+            </ion-slide-page>
+            <ion-slide-page>
+                <form name="reviewForm" ng-submit="addListing()">
+                    <div class="list">
+                        <div class="card">
+                            <div class="item item-divider">Review the details of your listing below</div>
+
+                            <div class="item item-divider">Listing details</div>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Price</span>
+                                <div class="icon-input-container">
+                                    <i class="icon placeholder-icon">£</i>
+                                    <input type="number" step="0.01" min="0" name="isbn" ng-model="listing.price" required>
+                                </div>
+                            </label>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Location</span>
+                                <input type="text" name="location" placeholder="Balliol College" ng-model="listing.location" required>
+                            </label>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Listing description</span>
+                                <textarea rows="8" type="text" name="listing-description" placeholder="e.g. condition, contact details" ng-model="listing.listingDescription" required></textarea>
+                            </label>
+
+                            <div class="item item-divider">Book details</div>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">ISBN</span>
+                                <input type="tel" pattern="[0-9]*X?" name="isbn" placeholder="ISBN10/ISBN13" ng-model="listing.isbn" required>
+                            </label>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Title</span>
+                                <input type="text" name="title" placeholder="Book title" ng-model="listing.title" required>
+                            </label>
+                            <div class="item item-input item-stacked-label" array-input-item heading="Author" item-name="author" data="listing.author" placeholder="John Doe"></div>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Publisher</span>
+                                <input type="text" name="publisher" placeholder="Oxford University Press" ng-model="listing.publisher" required>
+                            </label>
+                            <div class="item item-input item-stacked-label" array-input-item heading="Subject" item-name="subject" data="listing.subject" placeholder="Mathematics"></div>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Book description</span>
+                                <input type="text" name="book-description" placeholder="Description of book" ng-model="listing.bookDescription" required>
+                            </label>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Page count</span>
+                                <input type="number" name="pagecount" placeholder="Number of pages" ng-model="listing.pageCount" required>
+                            </label>
+                            <label class="item item-input item-stacked-label">
+                                <span class="input-label">Thumbnail</span>
+                                <input type="text" name="thumbnail" placeholder="Thumbnail URL" ng-model="listing.thumbnail" required>
+                            </label>
+
+                            <div class="item">
+                                <button ng-if="mode == 'create'" class="button button-block button-balanced" type="submit">Create listing</button>
+                                <button ng-if="mode == 'edit'" class="button button-block button-balanced" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </ion-slide-page>
+        </ion-slides>
+    </ion-content>
+</ion-modal-view>

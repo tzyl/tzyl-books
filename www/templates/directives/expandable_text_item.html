@@ -1,0 +1,4 @@
+<h2>{{ heading }}</h2>
+<button ng-click="open = !open" ng-show="needed" class="expandable-button button button-icon" ng-class="open ? 'ion-minus-round' : 'ion-plus-round'"></button>
+<p ng-show="needed && !open">{{ shortText }} <span class="expandable-ellipsis">...</span></p>
+<p ng-show="!needed || open">{{ text }}</p>
